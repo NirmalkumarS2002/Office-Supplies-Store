@@ -73,3 +73,37 @@
                 window.location.href="404.html"
             }, 1000);
         });
+
+
+        // loader
+
+         const loader = document.getElementById("pageLoader");
+        const barFill = document.getElementById("loaderBarFill");
+        const percentNum = document.getElementById("loaderPercentNum");
+
+        let progress = 0;
+
+        function updateProgress() {
+            progress += Math.random() * 12 + 4;
+            if (progress >= 100) {
+                progress = 100;
+            }
+
+            barFill.style.width = progress + "%";
+            percentNum.textContent = Math.floor(progress);
+           
+             document.body.classList.add("scroll-off")
+            if (progress < 100) {
+                setTimeout(updateProgress, 180);
+                
+            } else {
+                setTimeout(() => {
+                    loader.classList.add("hide");
+                     document.body.classList.remove("scroll-off")
+                }, 400);
+            }
+        }
+
+        window.addEventListener("load", () => {
+            updateProgress();
+        });
