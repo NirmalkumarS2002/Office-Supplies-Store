@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfficeNest - Sign Up</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --header1: #0E2A47;
+            --header2: #0A2038;
+            --border: 1px solid rgba(128, 128, 128, 0.295);
+            --pcolor: #FF7A30;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ===== top bar ===== */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 50px;
+            background: var(--header2);
+            border-bottom: var(--border);
+        }
+
+        .topbar .company-logo img {
+            width: 120px;
+        }
+
+        .topbar-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .topbar-links a {
+            color: #cfd6e2;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: .3s ease;
+        }
+
+        .topbar-links a span {
+            color: var(--pcolor);
+            font-size: 18px;
+        }
+
+        .topbar-links a:hover {
+            color: white;
+        }
+
+        @media (max-width:700px) {
+            .topbar {
+                padding: 16px 20px;
+            }
+
+            .topbar-links a.hide-mobile {
+                display: none;
+            }
+        }
+
+        /* ===== auth stage ===== */
+        .auth-stage {
+            position: relative;
+            min-height: calc(100vh - 76px);
+            background: var(--header2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 60px 50px;
+        }
+
+        .auth-stage::before {
+            content: "";
+            position: absolute;
+            top: -220px;
+            right: -180px;
+            width: 550px;
+            height: 550px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 48, 0.22), transparent 70%);
+            z-index: 0;
+        }
+
+        .auth-stage::after {
+            content: "";
+            position: absolute;
+            bottom: -220px;
+            left: -180px;
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 48, 0.14), transparent 70%);
+            z-index: 0;
+        }
+
+        .auth-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1350px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* left: info panel */
+        .auth-info .auth-tag {
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 122, 48, 0.15);
+            border: 1px solid rgba(255, 122, 48, 0.4);
+            width: fit-content;
+            padding: 7px 20px;
+            border-radius: 30px;
+            color: var(--pcolor);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .auth-info h1 {
+            font-size: clamp(26px, 3vw, 40px);
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .auth-info h1 span {
+            color: var(--pcolor);
+        }
+
+        .auth-info>p {
+            color: #cfcfcf;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 420px;
+            margin-bottom: 32px;
+        }
+
+        .auth-perks {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .auth-perks li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            list-style: none;
+            color: #d6dbe6;
+            font-size: 14px;
+        }
+
+        .auth-perks span.material-symbols-outlined {
+            color: var(--pcolor);
+            background: rgba(255, 122, 48, 0.16);
+            font-size: 20px;
+            height: 38px;
+            width: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .auth-quote {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-left: 4px solid var(--pcolor);
+            border-radius: 10px;
+            padding: 20px 22px;
+            max-width: 420px;
+        }
+
+        .auth-quote p {
+            color: white;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .auth-quote small {
+            color: #aab3c8;
+            font-size: 12px;
+        }
+
+        @media (max-width:1000px) {
+            .auth-quote {
+                display: none;
+            }
+        }
+
+        /* right: form card */
+        .auth-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 40px 44px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .auth-card h2 {
+            font-size: 26px;
+            color: var(--header2);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .auth-card .sub {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .role-switch {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #fbf6f1;
+            border-radius: 10px;
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+
+        .role-switch button {
+            font: inherit;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 11px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--header2);
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .role-switch button.on {
+            background: var(--pcolor);
+            color: black;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .fld {
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        .fld label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 7px;
+            color: var(--header2);
+        }
+
+        .box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid #e4e4e4;
+            border-radius: 9px;
+            padding: 0 14px;
+            background: #fbfbfb;
+            transition: .2s ease;
+            width: 100%;
+        }
+
+        .box:focus-within {
+            border-color: var(--pcolor);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 122, 48, .18);
+        }
+
+        .box.bad {
+            border-color: #c0392b;
+        }
+
+        .box span.material-symbols-outlined {
+            font-size: 20px;
+            color: #999;
+        }
+
+        .box input {
+            flex: 1;
+            min-width: 0;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            font: inherit;
+            font-size: 14px;
+            padding: 13px 0;
+            color: var(--header2);
+        }
+
+        .eye {
+            cursor: pointer;
+            background: none;
+            border: 0;
+            display: grid;
+            place-items: center;
+            color: #999;
+        }
+
+        .err {
+            color: #c0392b;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 22px;
+        }
+
+        .terms input {
+            accent-color: var(--pcolor);
+            width: 15px;
+            height: 15px;
+            margin-top: 3px;
+        }
+
+        .terms a {
+            color: var(--header2);
+            font-weight: 700;
+        }
+
+        .terms a:hover {
+            color: var(--pcolor);
+        }
+
+        .terms.bad {
+            color: #c0392b;
+        }
+
+        .go {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px;
+            background: var(--pcolor);
+            color: black;
+            border: none;
+            border-radius: 9px;
+            font: inherit;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: box-shadow .4s ease, transform .4s ease;
+        }
+
+        .go::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+            width: 70%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: skewX(-25deg);
+            transition: 0.6s ease;
+        }
+
+        .go:hover::before {
+            left: 130%;
+        }
+
+        .go:hover {
+            box-shadow: 0 10px 25px rgba(255, 122, 48, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .go span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .or-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 22px 0 16px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .or-row::before,
+        .or-row::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
+        .soc-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .soc-row a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 11px;
+            border: 1px solid #eee;
+            border-radius: 9px;
+            font-size: 17px;
+            color: var(--header2);
+            transition: .3s ease;
+        }
+
+        .soc-row a:hover {
+            border-color: var(--pcolor);
+            color: var(--pcolor);
+            background: #fff7f1;
+        }
+
+        .auth-foot {
+            text-align: center;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .auth-foot a {
+            color: var(--header2);
+            font-weight: 700;
+        }
+
+        .auth-foot a:hover {
+            color: var(--pcolor);
+        }
+
+        @media (max-width:1000px) {
+            .auth-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .auth-info {
+                text-align: center;
+            }
+
+            .auth-info .auth-tag {
+                margin: 0 auto 20px auto;
+            }
+
+            .auth-info>p {
+                margin: 0 auto 30px auto;
+            }
+
+            .auth-perks {
+                max-width: 420px;
+                margin: 0 auto 32px auto;
+                text-align: left;
+            }
+
+            .auth-card {
+                max-width: 520px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width:520px) {
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+        @media (max-width:500px) {
+            .auth-stage {
+                padding: 40px 18px;
+            }
+
+            .auth-card {
+                padding: 32px 22px;
+            }
+        }
+
+        /* ===== success popup ===== */
+        .popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 32, 56, .75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .popup.on {
+            display: flex;
+        }
+
+        .pbox {
+            width: min(360px, 100%);
+            background: #fff;
+            border-radius: 14px;
+            border-top: 5px solid var(--pcolor);
+            padding: 36px 30px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, .35);
+        }
+
+        .pbox>span.material-symbols-outlined {
+            font-size: 46px;
+            color: var(--pcolor);
+        }
+
+        .pbox h2 {
+            font-size: 22px;
+            margin: 10px 0;
+            color: var(--header2);
+        }
+
+        .pbox p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .pbox button {
+            position: relative;
+            overflow: hidden;
+            padding: 12px 40px;
+            border: none;
+            background: var(--pcolor);
+            color: black;
+            font: inherit;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: box-shadow .3s ease, transform .3s ease;
+        }
+
+        .pbox button:hover {
+            box-shadow: 0 10px 25px rgba(255, 122, 48, 0.35);
+            transform: translateY(-2px);
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                transition: none !important
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="popup" id="popup" role="dialog" aria-modal="true" aria-labelledby="ptitle">
+        <div class="pbox">
+            <span class="material-symbols-outlined">check_circle</span>
+            <h2 id="ptitle">Account created</h2>
+            <p>Welcome to OfficeNest. Select OK to log in.</p>
+            <button id="okBtn">OK</button>
+        </div>
+    </div>
+
+    <div class="topbar">
+        <a href="index.html" class="company-logo"><img
+                src="./src/logo.webp"
+                alt="OfficeNest Logo"></a>
+        <div class="topbar-links">
+            <a href="index.html"><span class="material-symbols-outlined">arrow_back</span>Back to
+                home</a>
+            <a href="404.html"  class="hide-mobile"><span class="material-symbols-outlined">call</span>+91 12345 09876</a>
+        </div>
+    </div>
+
+    <section class="auth-stage">
+        <div class="auth-grid">
+
+            <div class="auth-info">
+                <p class="auth-tag">Get Started</p>
+                <h1>Create Your <span>OfficeNest</span> Account.</h1>
+                <p>Set up your account to order supplies, track deliveries, and unlock bulk pricing built for
+                    businesses of every size.</p>
+
+                <ul class="auth-perks">
+                    <li><span class="material-symbols-outlined">shopping_cart</span>Order from 5000+ products across
+                        40+ brands</li>
+                    <li><span class="material-symbols-outlined">request_quote</span>Get custom bulk pricing for your
+                        team</li>
+                    <li><span class="material-symbols-outlined">receipt_long</span>Track orders and manage invoices in
+                        one place</li>
+                </ul>
+
+                <div class="auth-quote">
+                    <p>"OfficeNest handled our office relocation supply order with great speed."</p>
+                    <small>Karthik Raja, Business Owner</small>
+                </div>
+            </div>
+
+            <div class="auth-card">
+                <h2>Create your account</h2>
+                <p class="sub">Set up access to order, track and manage your supplies.</p>
+
+                <div class="role-switch" role="group" aria-label="Account type">
+                    <button type="button" class="on" data-role="Customer">Customer</button>
+                    <button type="button" data-role="Business">Business</button>
+                </div>
+
+                <div class="row">
+                    <div class="fld"><label for="f-name">Full name</label>
+                        <div class="box"><span class="material-symbols-outlined">person</span><input type="text"
+                                id="f-name" placeholder="Your name" autocomplete="name"></div>
+                        <p class="err"></p>
+                    </div>
+                    <div class="fld"><label for="f-phone">Phone number</label>
+                        <div class="box"><span class="material-symbols-outlined">call</span><input type="tel"
+                                id="f-phone" placeholder="Your phone" autocomplete="tel"></div>
+                        <p class="err"></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="fld"><label for="f-email">Email address</label>
+                        <div class="box"><span class="material-symbols-outlined">mail</span><input type="email"
+                                id="f-email" placeholder="you@company.com" autocomplete="email"></div>
+                        <p class="err"></p>
+                    </div>
+                    <div class="fld"><label for="f-company">Company name</label>
+                        <div class="box"><span class="material-symbols-outlined">business</span><input type="text"
+                                id="f-company" placeholder="Your company" autocomplete="organization"></div>
+                        <p class="err"></p>
+                    </div>
+                </div>
+
+                <div class="fld"><label for="f-pass">Password</label>
+                    <div class="box"><span class="material-symbols-outlined">lock</span><input type="password"
+                            id="f-pass" placeholder="Create a password" autocomplete="new-password"><button
+                            type="button" class="eye" aria-label="Show password"><span
+                                class="material-symbols-outlined">visibility_off</span></button></div>
+                    <p class="err"></p>
+                </div>
+
+                <div class="fld"><label for="f-con">Confirm password</label>
+                    <div class="box"><span class="material-symbols-outlined">lock</span><input type="password"
+                            id="f-con" placeholder="Re-enter your password" autocomplete="new-password"><button
+                            type="button" class="eye" aria-label="Show password"><span
+                                class="material-symbols-outlined">visibility_off</span></button></div>
+                    <p class="err"></p>
+                </div>
+
+                <label class="terms" id="terms"><input type="checkbox" id="f-terms"><span>I agree to the <a
+                            href="404.html">Terms and conditions</a> and <a href="404.html">Privacy
+                            policy</a></span></label>
+
+                <button class="go" id="signBtn"><span>Create account</span><span
+                        class="material-symbols-outlined">arrow_forward</span></button>
+
+                <div class="or-row">or continue with</div>
+                <div class="soc-row">
+                    <a href="404.html" aria-label="Google"><i class="fa-brands fa-google"></i></a>
+                    <a href="404.html" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+
+                <p class="auth-foot">Already have an account? <a href="login.html">Log in</a></p>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        const $ = id => document.getElementById(id);
+        const nameI = $("f-name"), phoneI = $("f-phone"), emailI = $("f-email"), companyI = $("f-company"), passI = $("f-pass"), conI = $("f-con"), termsI = $("f-terms");
+        const tabs = document.querySelectorAll(".role-switch button"), popup = $("popup"), okBtn = $("okBtn");
+        let selectedRole = "Customer";
+
+        tabs.forEach(t => t.addEventListener("click", () => {
+            tabs.forEach(x => x.classList.remove("on"));
+            t.classList.add("on");
+            selectedRole = t.dataset.role;
+        }));
+
+        document.querySelectorAll(".eye").forEach(eye => eye.addEventListener("click", () => {
+            const input = eye.parentElement.querySelector("input"), hidden = input.type === "password";
+            input.type = hidden ? "text" : "password";
+            eye.firstElementChild.textContent = hidden ? "visibility" : "visibility_off";
+            eye.setAttribute("aria-label", hidden ? "Hide password" : "Show password");
+        }));
+
+        nameI.addEventListener("input", () => { nameI.value = nameI.value.replace(/[^A-Za-z\s]/g, "") });
+        phoneI.addEventListener("input", () => { phoneI.value = phoneI.value.replace(/[^0-9+\s]/g, "") });
+
+        function setErr(input, msg) {
+            const fld = input.closest(".fld");
+            fld.querySelector(".err").textContent = msg;
+            fld.querySelector(".box").classList.toggle("bad", !!msg);
+            return !msg;
+        }
+
+        $("signBtn").addEventListener("click", () => {
+            const n = nameI.value.trim(), ph = phoneI.value.trim(), em = emailI.value.trim(), co = companyI.value.trim(), p = passI.value.trim(), c = conI.value.trim();
+            const results = [
+                setErr(nameI, n === "" ? "Enter your name" : !/^[A-Za-z\s]+$/.test(n) ? "Only letters are allowed" : ""),
+                setErr(phoneI, ph === "" ? "Enter your phone number" : !/^[0-9+\s]{7,15}$/.test(ph) ? "Enter a valid phone number" : ""),
+                setErr(emailI, em === "" ? "Enter your email address" : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em) ? "Enter a valid email address" : ""),
+                setErr(companyI, co === "" ? "Enter your company name" : co.length < 2 ? "Company name is too short" : ""),
+                setErr(passI, p === "" ? "Create a password" : p.length < 6 ? "Password must be at least 6 characters" : ""),
+                setErr(conI, c === "" ? "Confirm your password" : p !== c ? "Passwords do not match" : "")
+            ];
+            const termsOk = termsI.checked;
+            $("terms").classList.toggle("bad", !termsOk);
+
+            if (results.every(Boolean) && termsOk) {
+                try { localStorage.setItem("useremail", em); localStorage.setItem("userrole", selectedRole) } catch (e) { }
+                 window.location.href = "login.html" 
+            }
+        });
+
+        // okBtn.addEventListener("click", () => {});
+    </script>
+</body>
+
+</html>

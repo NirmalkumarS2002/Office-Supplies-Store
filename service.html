@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfficeNest - Products</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --header1: #0E2A47;
+            --header2: #0A2038;
+            --border: 1px solid rgba(128, 128, 128, 0.295);
+            --pcolor: #FF7A30;
+        }
+
+        body {
+            overflow-x: hidden;
+            scrollbar-width: none;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+       
+        /* ===== PAGE BANNER ===== */
+
+        .page-banner {
+            position: relative;
+            min-height: 46vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(125deg, rgba(10, 32, 56, 0.85), rgba(10, 32, 56, 0.7)),
+                url("./src/how.webp") center/cover no-repeat;
+            padding: 150px 20px 55px 20px;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: "";
+            position: absolute;
+            top: -180px;
+            right: -180px;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 48, 0.25), transparent 70%);
+            animation: blobPulse 7s ease-in-out infinite;
+        }
+
+        @keyframes blobPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .page-banner-tag {
+            position: relative;
+            z-index: 1;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 122, 48, 0.15);
+            border: 1px solid rgba(255, 122, 48, 0.4);
+            padding: 7px 20px;
+            border-radius: 30px;
+            color: var(--pcolor);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .page-banner h1 {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-size: clamp(30px, 5vw, 52px);
+            margin-bottom: 16px;
+        }
+
+        .page-banner-crumb {
+            position: relative;
+            z-index: 1;
+            color: #cfcfcf;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .page-banner-crumb a {
+            color: #cfcfcf;
+            text-decoration: none;
+        }
+
+        .page-banner-crumb a:hover {
+            color: var(--pcolor);
+        }
+
+        .page-banner-crumb span.material-symbols-outlined {
+            font-size: 16px;
+            color: var(--pcolor);
+        }
+
+        /* ===== shared ===== */
+
+        .sec {
+            padding: 70px 50px;
+            background: #ffffff;
+        }
+
+        .sec-tag {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pcolor);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .sec-title {
+            font-size: clamp(26px, 3.6vw, 40px);
+            color: var(--header2);
+            margin-bottom: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .sec-desc {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .sec-header-center {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .sec-header-center .sec-desc {
+            margin: 0 auto;
+        }
+
+        @media (max-width:550px) {
+              .sec {
+            padding: 70px 20px;
+        }
+        }
+
+        /* ===== 1. CATEGORY FILTER PILLS ===== */
+
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            max-width: 1300px;
+            margin: 0 auto 45px auto;
+        }
+
+        .filter-pill {
+            padding: 12px 26px;
+            border-radius: 30px;
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--header2);
+            cursor: pointer;
+            transition: .3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-pill.active,
+        .filter-pill:hover {
+            background: var(--pcolor);
+            border-color: var(--pcolor);
+            color: black;
+        }
+
+        .filter-pill span.material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        /* ===== 2. PRODUCT GRID ===== */
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: #fff;
+            border: var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: .4s ease;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+            border-color: var(--pcolor);
+        }
+
+        .product-img-wrap {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+        }
+
+        .product-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .5s ease;
+        }
+
+        .product-card:hover .product-img-wrap img {
+            transform: scale(1.08);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--pcolor);
+            color: black;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .product-wish {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            height: 34px;
+            width: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--header2);
+            z-index: 2;
+            cursor: pointer;
+            transition: .4s ease;
+        }
+
+         .product-wish:hover{
+            color: red;
+            background: beige;
+         }
+
+        .product-body {
+            padding: 18px 20px 22px 20px;
+        }
+
+        .product-cat {
+            font-size: 12px;
+            color: var(--pcolor);
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .product-body h3 {
+            font-size: 17px;
+            color: var(--header2);
+            margin: 6px 0 8px 0;
+        }
+
+        .product-rating {
+            color: var(--pcolor);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .product-rating span.count {
+            color: #999;
+            margin-left: 4px;
+        }
+
+        .product-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .product-price {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--header2);
+        }
+
+        .product-price small {
+            font-size: 13px;
+            color: #aaa;
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        .product-add {
+            height: 40px;
+            width: 40px;
+            border-radius: 10px;
+            background: var(--header2);
+            color: white;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: .3s ease;
+        }
+
+        .product-add:hover {
+            background: var(--pcolor);
+            color: black;
+        }
+
+        @media (max-width:1100px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:600px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== 3. FEATURED BUNDLE BANNER ===== */
+
+        .bundle-banner {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--header2);
+            border-radius: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            overflow: hidden;
+        }
+
+        .bundle-img {
+            background: url("./src/image_7.webp") center/cover no-repeat;
+            min-height: 320px;
+        }
+
+        .bundle-text {
+            padding: 50px;
+            color: white;
+        }
+
+        .bundle-text>span.material-symbols-outlined {
+            font-size: 36px;
+            color: var(--pcolor);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .bundle-text h2 {
+            font-size: clamp(24px, 3vw, 32px);
+            margin-bottom: 14px;
+        }
+
+        .bundle-text p {
+            color: #cfcfcf;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .bundle-price-tag {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 10px;
+            background: rgba(255, 122, 48, 0.12);
+            border: 1px solid rgba(255, 122, 48, 0.3);
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 24px;
+        }
+
+        .bundle-price-tag h3 {
+            color: var(--pcolor);
+            font-size: 26px;
+        }
+
+        .bundle-price-tag span {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+
+        @media (max-width:900px) {
+            .bundle-banner {
+                grid-template-columns: 1fr;
+            }
+
+            .bundle-img {
+                min-height: 220px;
+            }
+        }
+
+        /* ===== 4. WHY SHOP WITH US STRIP ===== */
+
+        .perks-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .perk-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .perk-item span.material-symbols-outlined {
+            font-size: 36px;
+            color: var(--pcolor);
+            background: #fff1e6;
+            height: 74px;
+            width: 74px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+        }
+
+        .perk-item h4 {
+            font-size: 16px;
+            color: var(--header2);
+            margin-bottom: 6px;
+        }
+
+        .perk-item p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        @media (max-width:900px) {
+            .perks-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ===== 5. CTA (split panel) ===== */
+
+        .cta-split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            max-width: 1300px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-split-text {
+            background: var(--header2);
+            padding: 55px 50px;
+            color: white;
+        }
+
+        .cta-split-text>span.material-symbols-outlined {
+            font-size: 38px;
+            color: var(--pcolor);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .cta-split-text h1 {
+            font-size: clamp(24px, 3.2vw, 34px);
+            margin-bottom: 14px;
+            line-height: 1.3;
+        }
+
+        .cta-split-text p {
+            color: #cfcfcf;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .cta-split-img {
+            background: url("./src/image_9.webp") center/cover no-repeat;
+            min-height: 300px;
+        }
+
+        @media (max-width:900px) {
+            .cta-split {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-split-img {
+                min-height: 200px;
+            }
+        }
+
+   
+    </style>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header1">
+            <div class="nav-time">
+                <a href="404.html"><span class="material-symbols-outlined">schedule</span>Store Hours | Mon - Sat |
+                    9:00 - 8:00</a>
+            </div>
+            <div class="nav-sotial-icons">
+                <a href="404.html"> <i class="fa-brands fa-whatsapp"></i></a>
+                <a href="404.html"> <i class="fa-brands fa-facebook"></i></a>
+                <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+            <div class="nav-contact-details">
+                <a href="404.html"><span class="material-symbols-outlined">location_on</span>Chennai,Tamil Nadu</a>
+                <a href="404.html"><span class="material-symbols-outlined">mail</span>hello@officenest.com</a>
+            </div>
+        </div>
+
+        <div class="header2">
+            <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="OfficeNest Logo" class="logo-img"></a>
+
+            <div class="nav-container">
+                <div class="sidebar-logo-container">
+                    <a href="index.html"><img src="./src/logo.webp" alt="" class="s-logo"></a>
+                    <span class="material-symbols-outlined close-btn">close</span>
+                </div>
+                <ul class="nav-bar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="service.html" class="active">Products</a></li>
+                    <li><a href="blog.html">Offers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="search-sections">
+                <a href="404.html"><span class="material-symbols-outlined">call</span>+91 12345 09876</a>
+<a href="login.html" class="login-btn"><span class="material-symbols-outlined">login</span>Login</a>            </div>
+
+            <div class="menu-container">
+                <a href="login.html"><span class="material-symbols-outlined">person</span></a>
+                <span class="material-symbols-outlined menu-btn">menu</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+        <span class="page-banner-tag">Our Catalog</span>
+        <h1>5000+ Products For Every Workspace</h1>
+        <div class="page-banner-crumb">
+            <a href="index.html">Home</a>
+            <span class="material-symbols-outlined">chevron_right</span>
+            <span>Products</span>
+        </div>
+    </section>
+
+
+    <!-- 1. FILTER + PRODUCT GRID -->
+    <section class="sec reveal">
+        <div class="filter-bar">
+            <div class="filter-pill active errorpage"><span class="material-symbols-outlined">apps</span>All Products</div>
+            <div class="filter-pill errorpage"><span class="material-symbols-outlined">edit_note</span>Stationery</div>
+            <div class="filter-pill errorpage"><span class="material-symbols-outlined">chair</span>Furniture</div>
+            <div class="filter-pill errorpage"><span class="material-symbols-outlined">print</span>Printing & Paper</div>
+            <div class="filter-pill errorpage"><span class="material-symbols-outlined">devices</span>Tech Accessories</div>
+            <div class="filter-pill errorpage"><span class="material-symbols-outlined">inventory_2</span>Packaging</div>
+        </div>
+
+   <div class="product-grid">
+
+    <!-- 1. Notebook -->
+    <div class="product-card reveal delay-1">
+        <div class="product-img-wrap">
+            <span class="product-tag">Bestseller</span>
+            <span class="product-wish material-symbols-outlined">favorite_border</span>
+
+            <img src="./src/off0.webp"
+                alt="Premium Notebook Set">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Stationery</span>
+            <h3>Premium Notebook Set (Pack of 5)</h3>
+
+            <div class="product-rating">
+                ★★★★★ <span class="count">(214)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹499 <small>₹699</small>
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 2. Office Chair -->
+    <div class="product-card reveal delay-2">
+        <div class="product-img-wrap">
+
+                <span class="product-wish material-symbols-outlined errorpage">
+                favorite_border
+            </span>
+
+            <img src="./src/chair.webp"
+                alt="Ergonomic Mesh Office Chair">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Furniture</span>
+            <h3>Ergonomic Mesh Office Chair</h3>
+
+            <div class="product-rating">
+                ★★★★☆ <span class="count">(98)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹6,999
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 3. A4 Paper -->
+    <div class="product-card reveal delay-3">
+        <div class="product-img-wrap">
+
+            <span class="product-tag">New</span>
+
+                <span class="product-wish material-symbols-outlined errorpage">
+                favorite_border
+            </span>
+
+            <img src="./src/off6.webp"
+                alt="A4 Copier Paper">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Printing & Paper</span>
+            <h3>A4 Copier Paper (Box Of 10 Reams)</h3>
+
+            <div class="product-rating">
+                ★★★★★ <span class="count">(340)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹2,199 <small>₹2,599</small>
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 4. Keyboard & Mouse -->
+    <div class="product-card reveal delay-1">
+        <div class="product-img-wrap">
+
+                <span class="product-wish material-symbols-outlined errorpage">
+                favorite_border
+            </span>
+
+            <img src="./src/off3.webp"
+                alt="Wireless Keyboard and Mouse">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Tech Accessories</span>
+            <h3>Wireless Keyboard & Mouse Combo</h3>
+
+            <div class="product-rating">
+                ★★★★☆ <span class="count">(156)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹1,499
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 5. File Organiser -->
+    <div class="product-card reveal delay-2">
+        <div class="product-img-wrap">
+
+                <span class="product-wish material-symbols-outlined errorpage">
+                favorite_border
+            </span>
+
+            <img src="./src/off2.webp"
+                alt="Office File Organiser">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Packaging & Storage</span>
+            <h3>Stackable File Organiser Set</h3>
+
+            <div class="product-rating">
+                ★★★★★ <span class="count">(87)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹899
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 6. Gel Pens -->
+    <div class="product-card reveal delay-3">
+        <div class="product-img-wrap">
+
+            <span class="product-tag">Bestseller</span>
+
+                <span class="product-wish material-symbols-outlined errorpage">
+                favorite_border
+            </span>
+
+            <img src="./src/off4.webp"
+                alt="Premium Gel Pen Set">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Stationery</span>
+            <h3>Premium Gel Pen Set (Pack of 12)</h3>
+
+            <div class="product-rating">
+                ★★★★★ <span class="count">(412)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹349
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 7. Corporate Starter Kit -->
+    <div class="product-card reveal delay-1">
+        <div class="product-img-wrap">
+
+                <span class="product-wish material-symbols-outlined errorpage">
+                favorite_border
+            </span>
+
+            <img src="./src/off5.webp"
+                alt="Corporate Office Starter Kit">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Corporate Bulk</span>
+            <h3>Corporate Starter Kit Bundle</h3>
+
+            <div class="product-rating">
+                ★★★★☆ <span class="count">(64)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹4,299 <small>₹5,499</small>
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 8. Desk Organiser -->
+    <div class="product-card reveal delay-2">
+        <div class="product-img-wrap">
+
+            <span class="product-tag">New</span>
+
+            <span class="product-wish material-symbols-outlined errorpage">
+                favorite_border
+            </span>
+
+            <img src="./src/of7.webp"
+                alt="Compact Desk Organiser">
+        </div>
+
+        <div class="product-body">
+            <span class="product-cat">Furniture</span>
+            <h3>Compact Desk Organiser Shelf</h3>
+
+            <div class="product-rating">
+                ★★★★★ <span class="count">(129)</span>
+            </div>
+
+            <div class="product-price-row">
+                <div class="product-price">
+                    ₹1,199
+                </div>
+
+                <button class="product-add">
+                    <span class="material-symbols-outlined errorpage">
+                        add_shopping_cart
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+    </section>
+
+
+    <!-- 2. FEATURED BUNDLE -->
+    <section class="sec" style="background:#fbf6f1;">
+        <div class="bundle-banner reveal">
+            <div class="bundle-img"></div>
+            <div class="bundle-text">
+                <span class="material-symbols-outlined">local_offer</span>
+                <h2>Corporate Starter Bundle</h2>
+                <p>Everything a new office needs in one box — stationery, desk essentials, and printing supplies for
+                    up to 10 employees. Built for businesses setting up fast.</p>
+                <div class="bundle-price-tag">
+                    <h3>₹9,999</h3>
+                    <span>₹13,500</span>
+                </div>
+                <div>
+                    <button class="hero-btn errorpage" style="color:black;">Get This Bundle <span class="material-symbols-outlined">arrow_forward</span></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 3. WHY SHOP WITH US -->
+    <section class="sec reveal">
+        <div class="sec-header-center">
+            <span class="sec-tag">Why Shop With Us</span>
+            <h2 class="sec-title">Every Order, Backed By These</h2>
+        </div>
+        <div class="perks-strip">
+            <div class="perk-item reveal delay-1">
+                <span class="material-symbols-outlined">local_shipping</span>
+                <h4>Free Delivery</h4>
+                <p>On all orders above ₹999</p>
+            </div>
+            <div class="perk-item reveal delay-2">
+                <span class="material-symbols-outlined">verified</span>
+                <h4>Verified Quality</h4>
+                <p>Every product checked before dispatch</p>
+            </div>
+            <div class="perk-item reveal delay-3">
+                <span class="material-symbols-outlined">currency_exchange</span>
+                <h4>Easy Returns</h4>
+                <p>7-day hassle-free return policy</p>
+            </div>
+            <div class="perk-item reveal delay-4">
+                <span class="material-symbols-outlined">support_agent</span>
+                <h4>Dedicated Support</h4>
+                <p>Real help, whenever you need it</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 4. CTA -->
+    <section class="sec reveal">
+        <div class="cta-split">
+            <div class="cta-split-text">
+                <span class="material-symbols-outlined">local_shipping</span>
+                <h1>Need A Custom Bulk Order?</h1>
+                <p>Tell us what your business needs and we'll put together a plan with pricing built for your order
+                    size.</p>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                    <button class="hero-btn errorpage" style="color:black;">Get Bulk Pricing <span class="material-symbols-outlined">arrow_forward</span></button>
+                    <button class="hero-btn-outline errorpage">Contact Sales <span class="material-symbols-outlined">call</span></button>
+                </div>
+            </div>
+            <div class="cta-split-img"></div>
+        </div>
+    </section>
+
+    <footer class="footer reveal">
+        <div class="newsletter-wrap">
+            <h1 class="reveal delay-1">Newsletter</h1>
+            <h6 class="reveal delay-2">Stay updated on offers</h6>
+            <div class="footer-form reveal delay-3">
+                <input type="email" placeholder="Email Address" id="footer-mail">
+                <button class="footer-btn">Subscribe</button>
+            </div>
+            <p class="ferror"></p>
+        </div>
+
+        <div class="footer-main">
+            <div class="foot1 reveal-left delay-1">
+                <a href="index.html"><img src="./src/logo.webp" alt="OfficeNest Logo" class="footer-logo"></a>
+                <p>Quality office supplies and stationery delivered fast, for homes and businesses alike.</p>
+                <div class="footer-icons">
+                    <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-left delay-2">
+                <h2>Quick Links</h2>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="service.html">Products</a>
+                    <a href="blog.html">Offers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-left delay-3">
+                <h2>Categories</h2>
+                <div class="footer-links">
+                    <a href="404.html">Stationery</a>
+                    <a href="404.html">Office Furniture</a>
+                    <a href="404.html">Printing & Paper</a>
+                    <a href="404.html">Tech Accessories</a>
+                    <a href="404.html">Corporate Bulk Orders</a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-right delay-1">
+                <h2>Help</h2>
+                <div class="footer-links">
+                    <a href="404.html">Track Order</a>
+                    <a href="404.html">Returns & Refunds</a>
+                    <a href="404.html">Bulk Pricing</a>
+                    <a href="404.html">Delivery Info</a>
+                    <a href="404.html">FAQs</a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-right delay-2">
+                <h2>Contact</h2>
+                <div class="footer-links">
+                    <a href="404.html"> <span class="material-symbols-outlined">call</span>+91 12345 67898</a>
+                    <a href="404.html"><span class="material-symbols-outlined">mail</span>hello@officenest.com</a>
+                    <a href="404.html"><span class="material-symbols-outlined">location_on</span>Chennai, Tamilnadu</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="reveal-left">Copyright @ 2026 All rights Reserved</p>
+            <div class="reveal-right">
+                <a href="404.html">Terms & condition</a> | <a href="404.html">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+<!-- 
+    <script>
+        let menubtn = document.querySelector(".menu-btn")
+        let closebtn = document.querySelector(".close-btn")
+        let navcontainer = document.querySelector(".nav-container")
+        menubtn.addEventListener("click", () => {
+            navcontainer.classList.add("active")
+        })
+
+        closebtn.addEventListener("click", () => {
+            navcontainer.classList.remove("active")
+        })
+
+        let header = document.querySelector(".header")
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 400) {
+                header.classList.add("active")
+            } else {
+                header.classList.remove("active")
+            }
+        })
+
+        let errorpage = document.querySelectorAll(".errorpage")
+        errorpage.forEach((error) => {
+            error.addEventListener("click", () => {
+                window.location.href = "404.html"
+            })
+        })
+
+        const filterPills = document.querySelectorAll(".filter-pill");
+        filterPills.forEach((pill) => {
+            pill.addEventListener("click", () => {
+                filterPills.forEach((p) => p.classList.remove("active"));
+                pill.classList.add("active");
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("showed");
+                }
+            })
+        }, {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.2
+        })
+
+        document.querySelectorAll(".reveal, .reveal-right, .reveal-left").forEach((el) => {
+            observer.observe(el)
+        })
+
+    </script> -->
+
+</body>
+
+</html>

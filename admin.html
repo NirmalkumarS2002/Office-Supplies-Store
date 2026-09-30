@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>DeskHive - Admin Dashboard</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --pcolor: #e8622c;
+            --accent: #1fa398;
+            --dark: #12213b;
+            --panel: #F5F3EF;
+        }
+
+        body {
+            background: var(--panel);
+            font-family: "Inter", sans-serif;
+            display: flex;
+            min-height: 100vh;
+            padding-top: env(safe-area-inset-top, 0);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 260px;
+            flex-shrink: 0;
+            background: var(--dark);
+            padding: 25px 18px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0 8px 25px;
+            border-bottom: 1px solid #253552;
+            margin-bottom: 25px;
+        }
+
+        .sidebar-logo .brandmark {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--pcolor), #ff9a5a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .sidebar-logo h1 {
+            color: #fff;
+            font-family: "Outfit", sans-serif;
+            font-size: 19px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .sidebar-logo .adminclose {
+            color: #fff;
+            display: none;
+            margin-left: auto;
+            cursor: pointer;
+        }
+
+        .nav-group-label {
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #5c6c8a;
+            padding: 0 10px;
+            margin-bottom: 12px;
+        }
+
+        .side-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .side-nav button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 12px 14px;
+            border: none;
+            background: transparent;
+            color: #b7c0d3;
+            font-family: "Inter", sans-serif;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            transition: .3s ease;
+        }
+
+        .side-nav button .material-symbols-outlined {
+            font-size: 20px;
+        }
+
+        .side-nav button:hover {
+            background: #1c2c4c;
+            color: #fff;
+        }
+
+        .side-nav button.active {
+            background: var(--pcolor);
+            color: #fff;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 12px;
+            background: #1c2c4c;
+        }
+
+        .sidebar-footer .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #0d7a70);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .sidebar-footer h4 {
+            color: #fff;
+            font-size: 13px;
+        }
+
+        .sidebar-footer span {
+            color: #8fa0c0;
+            font-size: 11px;
+        }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            min-width: 0;
+        }
+
+        .topbar {
+            background: #fff;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbarimgcontainer {
+            display: none;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .topbarimgcontainer .topbarmenu {
+            font-size: 20px;
+            display: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .topbarimgcontainer h1 {
+            display: none;
+            color: #fff;
+            font-family: "Outfit", sans-serif;
+            font-size: 17px;
+        }
+
+        .topbar h2 {
+            font-family: "Outfit", sans-serif;
+            font-weight: 500;
+            font-size: 22px;
+            color: var(--dark);
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--panel);
+            border: 1px solid var(--pcolor);
+            border-radius: 10px;
+            padding: 10px 16px;
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 13px;
+            width: 190px;
+        }
+
+        .search-box>.material-symbols-outlined {
+            color: var(--dark);
+            font-size: 18px;
+        }
+
+        .topbar-right>.material-symbols-outlined {
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        .topbar-avatar .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #0d7a70);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .view {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .view.active {
+            display: flex;
+        }
+
+        .d-btn {
+            padding: 10px 20px;
+            background: var(--pcolor);
+            border: 1px solid var(--pcolor);
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: .4s ease;
+            font-size: 13px;
+            font-weight: 700;
+            font-family: "Inter", sans-serif;
+            white-space: nowrap;
+        }
+
+        .d-btn:hover {
+            background: #cf4f1e;
+        }
+
+        .panel {
+            background: #fff;
+            border-radius: 20px;
+            padding: 25px;
+            overflow-x: auto;
+            margin: 10px;
+        }
+
+        .panel h3 {
+            font-family: "Outfit", sans-serif;
+            font-weight: 500;
+            font-size: 17px;
+            margin-bottom: 18px;
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 10px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stat-card .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-card .material-symbols-outlined {
+            background: var(--pcolor);
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .stat-card h2 {
+            font-family: "Outfit", sans-serif;
+            font-weight: 600;
+            font-size: 26px;
+        }
+
+        .stat-card p {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .stat-card .delta {
+            font-size: 12px;
+            color: var(--accent);
+        }
+
+        .stat-card .delta.down {
+            color: var(--pcolor);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead th {
+            text-align: left;
+            font-size: 12px;
+            color: #999;
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+        }
+
+        tbody td {
+            padding: 14px 12px;
+            font-size: 13px;
+            border-bottom: 1px solid #f2f2f2;
+            white-space: nowrap;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .cell-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .cell-item .thumb {
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--pcolor), #ff9a5a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .badge.delivered {
+            background: #e6f7ec;
+            color: #1fa855;
+        }
+
+        .badge.transit {
+            background: #fff2e0;
+            color: #e08a1f;
+        }
+
+        .badge.pending {
+            background: #fde9e6;
+            color: var(--pcolor);
+        }
+
+        .badge.active {
+            background: #e6f7ec;
+            color: #1fa855;
+        }
+
+        .badge.maintenance {
+            background: #fde9e6;
+            color: var(--pcolor);
+        }
+
+        .split-2 {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+        }
+
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .fleet-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .fleet-thumb {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #fff;
+        }
+
+        .fleet-card-body {
+            padding: 16px;
+        }
+
+        .fleet-card-body h4 {
+            font-family: "Outfit", sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .fleet-card-body p {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .wh-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .wh-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            height: 150px;
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+            color: #fff;
+        }
+
+        .wh-card h4 {
+            font-family: "Outfit", sans-serif;
+            font-size: 15px;
+        }
+
+        .wh-card span {
+            font-size: 11px;
+            color: #eee;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .cust-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .cust-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .cust-card .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #0d7a70);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 0 auto 12px;
+        }
+
+        .cust-card h4 {
+            font-family: "Outfit", sans-serif;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .cust-card span {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .cust-card .cust-stat {
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--pcolor);
+            font-weight: 600;
+        }
+
+        @media (max-width:1100px) {
+
+            .stat-row,
+            .fleet-grid,
+            .wh-grid,
+            .cust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .split-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width:900px) {
+            .sidebar {
+                position: fixed;
+                inset: 0;
+                transform: translateX(-120%);
+                transition: .25s ease;
+                z-index: 9999;
+                width: 300px;
+            }
+
+            .sidebar.vis {
+                transform: translateX(0);
+            }
+
+            .topbar {
+                background: var(--dark);
+            }
+
+            .topbar-right>.material-symbols-outlined {
+                color: #fff;
+            }
+
+            .topbar>h2 {
+                display: none;
+            }
+
+            .search-box {
+                display: none;
+            }
+
+            .topbar {
+                padding: 12px 14px;
+            }
+
+            .topbarimgcontainer {
+                display: flex;
+            }
+
+            .topbarimgcontainer .topbarmenu,
+            .topbarimgcontainer h1 {
+                display: block;
+            }
+
+            .sidebar-logo {
+                justify-content: space-between;
+            }
+
+            .sidebar-logo .adminclose {
+                display: block;
+            }
+        }
+
+        @media (max-width:560px) {
+
+            .stat-row,
+            .fleet-grid,
+            .wh-grid,
+            .cust-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+        }
+
+        .logimg {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <img src="./src/logo.webp" alt="DeskHive logo" class="logimg">
+            <span class="material-symbols-outlined adminclose">close</span>
+        </div>
+
+        <span class="nav-group-label">Store Management</span>
+        <nav class="side-nav">
+            <button class="active" onclick="showView('overview', this)"><span
+                    class="material-symbols-outlined">dashboard</span> Overview</button>
+            <button onclick="showView('inventory', this)"><span class="material-symbols-outlined">inventory</span>
+                Inventory</button>
+            <button onclick="showView('orders', this)"><span class="material-symbols-outlined">shopping_cart</span>
+                Orders</button>
+            <button onclick="showView('delivery', this)"><span class="material-symbols-outlined">local_shipping</span>
+                Delivery Fleet</button>
+            <button onclick="showView('customers', this)"><span class="material-symbols-outlined">group</span>
+                Customers</button>
+            <button class="logoutbtn"><span class="material-symbols-outlined">logout</span> Logout</button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <img src="./src/img14.webp" alt="Arun Kumar"
+                style="width:40px;height:40px;border-radius:50%;object-fit:cover;">
+            <div>
+                <h4 id="username">Arun Kumar</h4>
+                <span>Store Admin</span>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <div class="topbar">
+            <div class="topbarimgcontainer">
+                <span class="material-symbols-outlined topbarmenu">menu</span>
+                <img src="./src/logo.webp" class="logimg" alt="">
+            </div>
+            <h2 id="topbarTitle">Overview</h2>
+            <div class="topbar-right">
+                <div class="search-box">
+                    <span class="material-symbols-outlined">search</span>
+                    <input type="text" placeholder="Search products, orders...">
+                </div>
+                <span class="material-symbols-outlined errorpage">notifications</span>
+                <div class="topbar-avatar"><img src="./src/img14.webp" alt="Admin"
+                        style="width:38px;height:38px;border-radius:50%;object-fit:cover;"></div>
+            </div>
+        </div>
+
+        <!-- OVERVIEW -->
+        <div class="view active" id="overview">
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">inventory_2</span></div>
+                    <h2>6,340</h2>
+                    <p>Total Products Listed</p><span class="delta">+9.4% this month</span>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">warehouse</span></div>
+                    <h2>5</h2>
+                    <p>Distribution Centers</p><span class="delta">+1 new hub</span>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">shopping_cart</span></div>
+                    <h2>284</h2>
+                    <p>Orders Ready to Ship</p><span class="delta">+12.1% this week</span>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">payments</span></div>
+                    <h2>₹18.6L</h2>
+                    <p>Monthly Store Revenue</p><span class="delta">+7.8% this month</span>
+                </div>
+            </div>
+
+            <div class="split-2">
+                <div class="panel">
+                    <div class="panel-head">
+                        <h3>Recent Store Activity</h3><button class="d-btn errorpage">View All</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Reference</th>
+                                <th>Category</th>
+                                <th>Operation</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#ORD-7721</td>
+                                <td>Stationery</td>
+                                <td>New Order Placed</td>
+                                <td><span class="badge delivered">Completed</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7718</td>
+                                <td>Office Furniture</td>
+                                <td>Packing In Progress</td>
+                                <td><span class="badge transit">In Progress</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7714</td>
+                                <td>Printers & Ink</td>
+                                <td>Stock Restock</td>
+                                <td><span class="badge pending">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>#ORD-7709</td>
+                                <td>Tech Accessories</td>
+                                <td>Order Dispatched</td>
+                                <td><span class="badge delivered">Completed</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel">
+                    <h3>Store Capacity Status</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Shelf Utilization</td>
+                                <td style="text-align:right;font-weight:600;">72%</td>
+                            </tr>
+                            <tr>
+                                <td>Available Bin Spaces</td>
+                                <td style="text-align:right;font-weight:600;">960</td>
+                            </tr>
+                            <tr>
+                                <td>Delivery Riders Active</td>
+                                <td style="text-align:right;font-weight:600;">14 / 18</td>
+                            </tr>
+                            <tr>
+                                <td>Warehouse Staff On Duty</td>
+                                <td style="text-align:right;font-weight:600;">38 / 44</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- INVENTORY -->
+        <div class="view" id="inventory">
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">inventory_2</span></div>
+                    <h2>6,340</h2>
+                    <p>Products in Stock</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">move_to_inbox</span></div>
+                    <h2>412</h2>
+                    <p>Incoming Stock</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">outbox</span></div>
+                    <h2>284</h2>
+                    <p>Outgoing Orders</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">warning</span></div>
+                    <h2>27</h2>
+                    <p>Low Stock Alerts</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Distribution Centers</h3>
+                <div class="wh-grid">
+                    <div class="wh-card"
+                        style="background:linear-gradient(180deg,transparent,#0d1b33 90%),url('./src/loc1.webp') center/cover;">
+                        <div>
+                            <h4>Chennai Central Hub</h4><span>Capacity 88%</span>
+                        </div>
+                    </div>
+                    <div class="wh-card"
+                        style="background:linear-gradient(180deg,transparent,#0d1b33 90%),url('./src/loc2.webp') center/cover;">
+                        <div>
+                            <h4>Bengaluru Hub</h4><span>Capacity 71%</span>
+                        </div>
+                    </div>
+                    <div class="wh-card"
+                        style="background:linear-gradient(180deg,transparent,#0d1b33 90%),url('./src/loc3.webp') center/cover;">
+                        <div>
+                            <h4>Mumbai Hub</h4><span>Capacity 63%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-head">
+                    <h3>Inventory Operations</h3><button class="d-btn errorpage">Add Stock</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Operation</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#INV-2201</td>
+                            <td>Gel Pen Sets</td>
+                            <td>Stationery</td>
+                            <td>Stock Received</td>
+                            <td>Sep 24</td>
+                            <td><span class="badge delivered">Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>#INV-2198</td>
+                            <td>Mesh Office Chairs</td>
+                            <td>Furniture</td>
+                            <td>Order Picking</td>
+                            <td>Sep 23</td>
+                            <td><span class="badge transit">In Progress</span></td>
+                        </tr>
+                        <tr>
+                            <td>#INV-2194</td>
+                            <td>Laser Ink Cartridges</td>
+                            <td>Printers & Ink</td>
+                            <td>Quality Check</td>
+                            <td>Sep 23</td>
+                            <td><span class="badge pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>#INV-2189</td>
+                            <td>Wireless Keyboards</td>
+                            <td>Tech Accessories</td>
+                            <td>Restocking</td>
+                            <td>Sep 22</td>
+                            <td><span class="badge transit">In Progress</span></td>
+                        </tr>
+                        <tr>
+                            <td>#INV-2183</td>
+                            <td>Hardbound Notebooks</td>
+                            <td>Stationery</td>
+                            <td>Dispatch Processing</td>
+                            <td>Sep 21</td>
+                            <td><span class="badge delivered">Completed</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ORDERS -->
+        <div class="view" id="orders">
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">shopping_cart</span></div>
+                    <h2>1,842</h2>
+                    <p>Total Orders This Month</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">local_shipping</span></div>
+                    <h2>284</h2>
+                    <p>Ready to Ship</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">task_alt</span></div>
+                    <h2>1,490</h2>
+                    <p>Delivered Successfully</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">undo</span></div>
+                    <h2>18</h2>
+                    <p>Returns / Refunds</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-head">
+                    <h3>Order Queue</h3><button class="d-btn errorpage">New Order</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cell-item"><span class="thumb"><span class="material-symbols-outlined"
+                                        style="font-size:16px;">pen_size_2</span></span>#ORD-7721</td>
+                            <td>Vantra Retail</td>
+                            <td>Gel Pens x40</td>
+                            <td>₹19,960</td>
+                            <td><span class="badge delivered">Delivered</span></td>
+                        </tr>
+                        <tr>
+                            <td class="cell-item"><span class="thumb"><span class="material-symbols-outlined"
+                                        style="font-size:16px;">chair</span></span>#ORD-7718</td>
+                            <td>Ferro Parts</td>
+                            <td>Office Chairs x6</td>
+                            <td>₹37,794</td>
+                            <td><span class="badge transit">Packing</span></td>
+                        </tr>
+                        <tr>
+                            <td class="cell-item"><span class="thumb"><span class="material-symbols-outlined"
+                                        style="font-size:16px;">print</span></span>#ORD-7714</td>
+                            <td>Coastline Exports</td>
+                            <td>Ink Cartridges x15</td>
+                            <td>₹28,485</td>
+                            <td><span class="badge pending">Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td class="cell-item"><span class="thumb"><span class="material-symbols-outlined"
+                                        style="font-size:16px;">keyboard</span></span>#ORD-7709</td>
+                            <td>Nova Electronics</td>
+                            <td>Keyboards x25</td>
+                            <td>₹31,225</td>
+                            <td><span class="badge delivered">Delivered</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- DELIVERY FLEET -->
+        <div class="view" id="delivery">
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">local_shipping</span></div>
+                    <h2>28</h2>
+                    <p>Delivery Trucks</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">directions_car</span></div>
+                    <h2>16</h2>
+                    <p>Delivery Vans</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">two_wheeler</span></div>
+                    <h2>12</h2>
+                    <p>Courier Bikes</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">build</span></div>
+                    <h2>3</h2>
+                    <p>Under Maintenance</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Fleet Overview</h3>
+                <div class="fleet-grid">
+                    <div class="fleet-card"><img class="fleet-thumb" src="./src/of14.webp"
+                            alt="Delivery truck" style="width:100%;height:120px;object-fit:cover;">
+                        <div class="fleet-card-body">
+                            <h4>Truck Unit DH-14</h4>
+                            <p>Route: Chennai → Coimbatore</p><span class="badge active">Active</span>
+                        </div>
+                    </div>
+                    <div class="fleet-card"><img class="fleet-thumb" src="./src/of2.webp"
+                            alt="Delivery van" style="width:100%;height:120px;object-fit:cover;">
+                        <div class="fleet-card-body">
+                            <h4>Van Unit VN-08</h4>
+                            <p>Route: Local City Deliveries</p><span class="badge active">Active</span>
+                        </div>
+                    </div>
+                    <div class="fleet-card"><img class="fleet-thumb" src="./src/of3.webp"
+                            alt="Courier bike" style="width:100%;height:120px;object-fit:cover;">
+                        <div class="fleet-card-body">
+                            <h4>Courier CB-02</h4>
+                            <p>Route: Express Same-Day</p><span class="badge maintenance">Maintenance</span>
+                        </div>
+                    </div>
+                    <div class="fleet-card"><img class="fleet-thumb" src="./src/of4.webp"
+                            alt="Delivery truck" style="width:100%;height:120px;object-fit:cover;">
+                        <div class="fleet-card-body">
+                            <h4>Truck Unit DH-09</h4>
+                            <p>Route: Bengaluru → Chennai</p><span class="badge active">Active</span>
+                        </div>
+                    </div>
+                    <div class="fleet-card"><img class="fleet-thumb" src="./src/of5.webp"
+                            alt="Delivery van" style="width:100%;height:120px;object-fit:cover;">
+                        <div class="fleet-card-body">
+                            <h4>Van Unit VN-05</h4>
+                            <p>Route: Business District</p><span class="badge active">Active</span>
+                        </div>
+                    </div>
+                    <div class="fleet-card"><img class="fleet-thumb" src="./src/of6.webp"
+                            alt="Courier bike" style="width:100%;height:120px;object-fit:cover;">
+                        <div class="fleet-card-body">
+                            <h4>Courier CB-06</h4>
+                            <p>Route: Standing By - Depot</p><span class="badge active">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CUSTOMERS -->
+        <div class="view" id="customers">
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">group</span></div>
+                    <h2>1,046</h2>
+                    <p>Total Customers</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">person_add</span></div>
+                    <h2>58</h2>
+                    <p>New This Month</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">workspace_premium</span></div>
+                    <h2>142</h2>
+                    <p>Business Accounts</p>
+                </div>
+                <div class="stat-card">
+                    <div class="top"><span class="material-symbols-outlined">support_agent</span></div>
+                    <h2>11</h2>
+                    <p>Open Support Tickets</p>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-head">
+                    <h3>Customer Directory</h3><button class="d-btn errorpage">Add Customer</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Contact</th>
+                            <th>Account Type</th>
+                            <th>Orders</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="cell-item"><img src="./src/img13.webp" alt="Vantra Retail"
+                                    style="width:34px;height:34px;border-radius:8px;object-fit:cover;">Vantra Retail
+                            </td>
+                            <td>ramesh@vantra.com</td>
+                            <td>Enterprise</td>
+                            <td>212</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-item"><img src="./src/img15.webp" alt="Ferro Parts"
+                                    style="width:34px;height:34px;border-radius:8px;object-fit:cover;">Ferro Parts</td>
+                            <td>anjali@ferroparts.com</td>
+                            <td>Business</td>
+                            <td>168</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-item"><img src="./src/img16.webp" alt="Coastline Exports"
+                                    style="width:34px;height:34px;border-radius:8px;object-fit:cover;">Coastline Exports
+                            </td>
+                            <td>david@coastline.com</td>
+                            <td>Business</td>
+                            <td>134</td>
+                        </tr>
+                        <tr>
+                            <td class="cell-item"><img src="./src/img17.webp" alt="Nova Electronics"
+                                    style="width:34px;height:34px;border-radius:8px;object-fit:cover;">Nova Electronics
+                            </td>
+                            <td>priya@novaelec.com</td>
+                            <td>Enterprise</td>
+                            <td>96</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const topbarmenu = document.querySelector(".topbarmenu");
+        const adminclose = document.querySelector(".adminclose");
+        const sidebar = document.querySelector(".sidebar");
+
+        topbarmenu.addEventListener("click", () => sidebar.classList.toggle('vis'));
+        adminclose.addEventListener("click", () => sidebar.classList.remove('vis'));
+
+        const logoutbtn = document.querySelector(".logoutbtn");
+        logoutbtn.addEventListener("click", () => { window.location.href = "index.html"; });
+
+        const username = document.querySelector("#username");
+        try {
+            const email = localStorage.getItem("useremail");
+            if (email) username.textContent = email.split("@")[0];
+        } catch (e) { }
+
+        document.querySelectorAll(".errorpage").forEach((el) => {
+            el.addEventListener("click", () => { window.location.href = "404.html"; });
+        });
+
+        document.querySelectorAll(".logimg").forEach((el) => {
+            el.addEventListener("click", () => { window.location.href = "admin.html"; });
+        });
+
+        const titles = { overview: "Overview", inventory: "Inventory", orders: "Orders", delivery: "Delivery Fleet", customers: "Customers" };
+
+        function showView(id, btn) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.side-nav button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('topbarTitle').innerText = titles[id];
+            sidebar.classList.remove('vis');
+        }
+    </script>
+
+</body>
+
+</html>

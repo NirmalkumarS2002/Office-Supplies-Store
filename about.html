@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfficeNest - About Us</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,-50..200" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --header1: #0E2A47;
+            --header2: #0A2038;
+            --border: 1px solid rgba(128, 128, 128, 0.295);
+            --pcolor: #FF7A30;
+        }
+
+        body {
+            overflow-x: hidden;
+            scrollbar-width: none;
+            font-family: 'Google Sans', sans-serif;
+        }
+
+        html {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* ===== header ===== */
+
+        
+        /* ===== PAGE BANNER ===== */
+
+        .page-banner {
+            position: relative;
+            min-height: 50vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(125deg, rgba(10, 32, 56, 0.85), rgba(10, 32, 56, 0.7)),
+                url("./src/of9.webp") center/cover no-repeat;
+            padding: 150px 20px 60px 20px;
+            overflow: hidden;
+        }
+
+        .page-banner::before {
+            content: "";
+            position: absolute;
+            top: -180px;
+            right: -180px;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 48, 0.25), transparent 70%);
+            animation: blobPulse 7s ease-in-out infinite;
+        }
+
+        @keyframes blobPulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        .page-banner-tag {
+            position: relative;
+            z-index: 1;
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255, 122, 48, 0.15);
+            border: 1px solid rgba(255, 122, 48, 0.4);
+            padding: 7px 20px;
+            border-radius: 30px;
+            color: var(--pcolor);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .page-banner h1 {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-size: clamp(32px, 5vw, 56px);
+            margin-bottom: 16px;
+        }
+
+        .page-banner-crumb {
+            position: relative;
+            z-index: 1;
+            color: #cfcfcf;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .page-banner-crumb a {
+            color: #cfcfcf;
+            text-decoration: none;
+        }
+
+        .page-banner-crumb a:hover {
+            color: var(--pcolor);
+        }
+
+        .page-banner-crumb span.material-symbols-outlined {
+            font-size: 16px;
+            color: var(--pcolor);
+        }
+
+        /* ===== shared ===== */
+
+        .sec {
+            padding: 90px 50px;
+            background: #ffffff;
+        }
+
+        .sec-tag {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--pcolor);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .sec-title {
+            font-size: clamp(28px, 4vw, 44px);
+            color: var(--header2);
+            margin-bottom: 18px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .sec-desc {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            max-width: 600px;
+        }
+
+        .sec-header-center {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 55px auto;
+        }
+
+        .sec-header-center .sec-desc {
+            margin: 0 auto;
+        }
+
+        @media (max-width:500px) {
+             .sec {
+            padding: 90px 20px;
+
+        }
+        }
+
+        /* ===== 1. OUR STORY — offset collage + pull quote (NEW look) ===== */
+
+        .story-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .story-collage {
+            position: relative;
+            height: 460px;
+        }
+
+        .story-collage img {
+            position: absolute;
+            border-radius: 14px;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .story-collage img.img-a {
+            top: 0;
+            left: 0;
+            width: 65%;
+            height: 300px;
+            z-index: 2;
+        }
+
+        .story-collage img.img-b {
+            bottom: 0;
+            right: 0;
+            width: 55%;
+            height: 240px;
+            z-index: 1;
+            border: 6px solid #fff;
+        }
+
+        .story-year-tag {
+            position: absolute;
+            top: 30px;
+            right: 10px;
+            background: var(--pcolor);
+            color: black;
+            font-weight: 700;
+            padding: 14px 18px;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.2;
+            z-index: 3;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        }
+
+        .story-year-tag span {
+            font-size: 20px;
+        }
+
+        .story-content .story-quote {
+            border-left: 4px solid var(--pcolor);
+            padding-left: 20px;
+            margin: 26px 0;
+            font-size: 17px;
+            font-style: italic;
+            color: var(--header2);
+            line-height: 1.6;
+        }
+
+        .story-mini-stats {
+            display: flex;
+            gap: 34px;
+            margin-top: 30px;
+        }
+
+        .story-mini-stats div h3 {
+            color: var(--pcolor);
+            font-size: 30px;
+        }
+
+        .story-mini-stats div p {
+            font-size: 13px;
+            color: #777;
+        }
+
+       /* Tablet */
+@media (max-width: 900px) {
+
+    .story-wrap {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .story-collage {
+        width: 100%;
+        max-width: 500px;
+        height: 400px;
+        margin: 0 auto;
+    }
+
+    .story-collage img.img-a {
+        width: 65%;
+        height: 270px;
+    }
+
+    .story-collage img.img-b {
+        width: 55%;
+        height: 220px;
+    }
+
+    .story-year-tag {
+        right: 5px;
+        top: 30px;
+    }
+}
+
+
+/* Mobile */
+@media (max-width: 600px) {
+
+    .story-wrap {
+        display: block;
+        padding: 0 20px;
+    }
+
+    .story-collage {
+        width: 100%;
+        max-width: 380px;
+        height: 360px;
+        margin: 0 auto 40px;
+    }
+
+    .story-collage img {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .story-collage img.img-a {
+        top: 0;
+        left: 0;
+        width: 78%;
+        height: 230px;
+    }
+
+    .story-collage img.img-b {
+        bottom: 0;
+        right: 0;
+        width: 65%;
+        height: 190px;
+        border: 6px solid #fff;
+    }
+
+    .story-year-tag {
+        top: 75px;
+        right: 0;
+        width: 90px;
+        height: 90px;
+    }
+}
+
+        
+
+        /* ===== 2. MISSION & VISION — split color banner (NEW look) ===== */
+
+        .mv-banner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1300px;
+            margin: 0 auto;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .mv-panel {
+            padding: 55px 45px;
+            color: white;
+        }
+
+        .mv-panel.mission {
+            background: var(--header2);
+        }
+
+        .mv-panel.vision {
+            background: var(--pcolor);
+            color: black;
+        }
+
+        .mv-panel span.material-symbols-outlined {
+            font-size: 40px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .mv-panel h3 {
+            font-size: 24px;
+            margin-bottom: 14px;
+        }
+
+        .mv-panel p {
+            font-size: 15px;
+            line-height: 1.7;
+            opacity: 0.9;
+        }
+
+        @media (max-width:800px) {
+            .mv-banner {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ===== 3. VALUES — numbered ribbon row (NEW look) ===== */
+
+        .values-strip {
+            display: flex;
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .value-tile {
+            flex: 0 0 220px;
+            background: #fbf6f1;
+            border-radius: 14px;
+            padding: 30px 24px;
+            position: relative;
+            overflow: hidden;
+            transition: .4s ease;
+        }
+
+        .value-tile:hover {
+            background: var(--header2);
+        }
+
+        .value-tile:hover h3,
+        .value-tile:hover p {
+            color: white;
+        }
+
+        .value-num {
+            position: absolute;
+            top: -10px;
+            right: 6px;
+            font-size: 60px;
+            font-weight: 800;
+            color: rgba(255, 122, 48, 0.15);
+        }
+
+        .value-tile span.material-symbols-outlined {
+            font-size: 30px;
+            color: var(--pcolor);
+            margin-bottom: 14px;
+            display: block;
+            position: relative;
+        }
+
+        .value-tile h3 {
+            font-size: 17px;
+            color: var(--header2);
+            margin-bottom: 8px;
+            position: relative;
+            transition: .3s ease;
+        }
+
+        .value-tile p {
+            font-size: 13px;
+            color: #777;
+            line-height: 1.5;
+            position: relative;
+            transition: .3s ease;
+        }
+
+        /* ===== 4. MILESTONES — horizontal roadmap (NEW look) ===== */
+
+        .roadmap {
+            position: relative;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .roadmap::before {
+            content: "";
+            position: absolute;
+            top: 26px;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background: repeating-linear-gradient(to right, var(--pcolor) 0 8px, transparent 8px 16px);
+            z-index: 0;
+        }
+
+        .roadmap-item {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .roadmap-dot {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--pcolor);
+            color: black;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            border: 5px solid white;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .roadmap-item h3 {
+            font-size: 17px;
+            color: var(--header2);
+            margin-bottom: 8px;
+        }
+
+        .roadmap-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        @media (max-width:900px) {
+            .roadmap {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .roadmap::before {
+                display: none;
+            }
+        }
+
+        /* ===== 5. TEAM — horizontal spotlight rows (NEW look) ===== */
+
+        .team-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-row {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 20px 26px;
+            transition: .4s ease;
+        }
+
+        .team-row:hover {
+            border-color: var(--pcolor);
+            background: rgba(255, 255, 255, 0.07);
+            transform: translateX(6px);
+        }
+
+        .team-row img {
+            width: 76px;
+            height: 76px;
+            border-radius: 12px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .team-row-info h3 {
+            color: white;
+            font-size: 18px;
+        }
+
+        .team-row-info span {
+            color: var(--pcolor);
+            font-size: 13px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .team-row-info p {
+            color: #bfbfbf;
+            font-size: 13px;
+        }
+
+        .team-row-icons {
+            margin-left: auto;
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .team-row-icons a {
+            color: white;
+            border: var(--border);
+            height: 34px;
+            width: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: .4s ease;
+        }
+
+        .team-row-icons a:hover {
+            background: var(--pcolor);
+            color: black;
+        }
+
+        @media (max-width:600px) {
+            .team-row {
+                flex-wrap: wrap;
+            }
+
+            .team-row-icons {
+                margin-left: 0;
+            }
+        }
+
+        /* ===== 6. CTA — split panel (NEW look, no photo bg) ===== */
+
+        .cta-split {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            max-width: 1300px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .cta-split-text {
+            background: var(--header2);
+            padding: 60px 50px;
+            color: white;
+        }
+
+        .cta-split-text>span.material-symbols-outlined {
+            font-size: 40px;
+            color: var(--pcolor);
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .cta-split-text h1 {
+            font-size: clamp(26px, 3.4vw, 38px);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .cta-split-text p {
+            color: #cfcfcf;
+            margin-bottom: 26px;
+            line-height: 1.7;
+        }
+
+        .cta-split-img {
+            background: url("./src/image_9.webp") center/cover no-repeat;
+            min-height: 320px;
+        }
+
+      
+
+        @media (max-width:900px) {
+            .cta-split {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-split-img {
+                min-height: 220px;
+            }
+        }
+
+      
+    </style>
+
+</head>
+
+<body>
+    <header class="header">
+        <div class="header1">
+            <div class="nav-time">
+                <a href="404.html"><span class="material-symbols-outlined">schedule</span>Store Hours | Mon - Sat |
+                    9:00 - 8:00</a>
+            </div>
+            <div class="nav-sotial-icons">
+                <a href="404.html"> <i class="fa-brands fa-whatsapp"></i></a>
+                <a href="404.html"> <i class="fa-brands fa-facebook"></i></a>
+                <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+            <div class="nav-contact-details">
+                <a href="404.html"><span class="material-symbols-outlined">location_on</span>Chennai,Tamil Nadu</a>
+                <a href="404.html"><span class="material-symbols-outlined">mail</span>hello@officenest.com</a>
+            </div>
+        </div>
+
+        <div class="header2">
+            <a href="index.html" class="company-logo"><img src="./src/logo.webp" alt="OfficeNest Logo" class="logo-img"></a>
+
+            <div class="nav-container">
+                <div class="sidebar-logo-container">
+                    <a href="index.html"><img src="./src/logo.webp" alt="" class="s-logo"></a>
+                    <span class="material-symbols-outlined close-btn">close</span>
+                </div>
+                <ul class="nav-bar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="service.html">Products</a></li>
+                    <li><a href="blog.html">Offers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="search-sections">
+                <a href="404.html"><span class="material-symbols-outlined">call</span>+91 12345 09876</a>
+                <a href="login.html" class="login-btn"><span class="material-symbols-outlined">login</span>Login</a>
+            </div>
+
+            <div class="menu-container">
+                <a href="login.html"><span class="material-symbols-outlined">person</span></a>
+                <span class="material-symbols-outlined menu-btn">menu</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- PAGE BANNER -->
+    <section class="page-banner">
+        <span class="page-banner-tag">About OfficeNest</span>
+        <h1>Stocking Offices Right, For Over A Decade</h1>
+        <div class="page-banner-crumb">
+            <a href="index.html">Home</a>
+            <span class="material-symbols-outlined">chevron_right</span>
+            <span>About</span>
+        </div>
+    </section>
+
+
+    <!-- 1. OUR STORY (offset collage + pull quote) -->
+    <section class="sec reveal">
+        <div class="story-wrap">
+            <div class="story-collage">
+                <img class="img-a" src="./src/image_6.webp" alt="Office supplies shelf">
+                <img class="img-b" src="./src/image_8.webp" alt="Notebook and pen">
+                <div class="story-year-tag">Since<span>2016</span></div>
+            </div>
+            <div class="story-content reveal-right">
+                <span class="sec-tag">Our Story</span>
+                <h2 class="sec-title">Built By People Who Understand Offices</h2>
+                <p class="sec-desc">OfficeNest started as a small stationery counter and has grown into a full-scale
+                    supplier for homes and businesses across the region.</p>
+                <p class="story-quote">"Our promise hasn't changed since day one — honest pricing, verified quality,
+                    and orders that arrive when we say they will."</p>
+                <div class="story-mini-stats">
+                    <div><h3>5K+</h3><p>Products</p></div>
+                    <div><h3>2200+</h3><p>Customers</p></div>
+                    <div><h3>30+</h3><p>Team Members</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 2. MISSION & VISION (split color banner) -->
+    <section class="sec" style="background:#fbf6f1;">
+        <div class="sec-header-center">
+            <span class="sec-tag">What Drives Us</span>
+            <h2 class="sec-title">Our Mission & Vision</h2>
+        </div>
+        <div class="mv-banner">
+            <div class="mv-panel mission reveal-left">
+                <span class="material-symbols-outlined">flag</span>
+                <h3>Our Mission</h3>
+                <p>To make stocking an office as simple as it should be — a wide, reliable range of products,
+                    transparent pricing, and delivery you can plan around, for businesses of every size.</p>
+            </div>
+            <div class="mv-panel vision reveal-right">
+                <span class="material-symbols-outlined">visibility</span>
+                <h3>Our Vision</h3>
+                <p>To be the first name that comes to mind when a business in India needs office supplies, known
+                    equally for our range, our reliability, and how easy we are to work with.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 3. VALUES (numbered ribbon strip) -->
+    <section class="sec reveal">
+        <div class="sec-header-center">
+            <span class="sec-tag">Our Values</span>
+            <h2 class="sec-title">What We Stand For</h2>
+            <p class="sec-desc">The principles that shape how we source products and treat every customer.</p>
+        </div>
+        <div class="values-strip">
+            <div class="value-tile"><span class="value-num">01</span><span class="material-symbols-outlined">verified</span><h3>Quality First</h3><p>Every product is checked against our own quality bar.</p></div>
+            <div class="value-tile"><span class="value-num">02</span><span class="material-symbols-outlined">handshake</span><h3>Honest Pricing</h3><p>No hidden charges or inflated bulk rates, ever.</p></div>
+            <div class="value-tile"><span class="value-num">03</span><span class="material-symbols-outlined">bolt</span><h3>Reliability</h3><p>98% on-time delivery, tracked and reported internally.</p></div>
+            <div class="value-tile"><span class="value-num">04</span><span class="material-symbols-outlined">eco</span><h3>Responsible Sourcing</h3><p>Brands and materials that reduce waste wherever we can.</p></div>
+            <div class="value-tile"><span class="value-num">05</span><span class="material-symbols-outlined">support_agent</span><h3>Real Support</h3><p>A real person picks up when you call, every time.</p></div>
+            <div class="value-tile"><span class="value-num">06</span><span class="material-symbols-outlined">trending_up</span><h3>Always Improving</h3><p>We refresh our catalog based on what customers ask for.</p></div>
+        </div>
+    </section>
+
+
+    <!-- 4. MILESTONES (horizontal roadmap) -->
+    <section class="sec" style="background:#fbf6f1;">
+        <div class="sec-header-center">
+            <span class="sec-tag">Our Journey</span>
+            <h2 class="sec-title">Milestones Along The Way</h2>
+        </div>
+        <div class="roadmap">
+            <div class="roadmap-item reveal delay-1">
+                <div class="roadmap-dot">2016</div>
+                <h3>The Beginning</h3>
+                <p>Opened our first stationery counter in Chennai.</p>
+            </div>
+            <div class="roadmap-item reveal delay-2">
+                <div class="roadmap-dot">2019</div>
+                <h3>Going Online</h3>
+                <p>Launched our online catalog for customers everywhere.</p>
+            </div>
+            <div class="roadmap-item reveal delay-3">
+                <div class="roadmap-dot">2022</div>
+                <h3>Bulk Program</h3>
+                <p>Introduced dedicated bulk pricing for businesses.</p>
+            </div>
+            <div class="roadmap-item reveal delay-4">
+                <div class="roadmap-dot">2026</div>
+                <h3>5000+ Products</h3>
+                <p>Grew our catalog serving 2200+ happy customers.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 5. TEAM (horizontal spotlight rows) -->
+    <section class="sec" style="background:var(--header2);">
+        <div class="sec-header-center">
+            <span class="sec-tag">Our Team</span>
+            <h2 class="sec-title" style="color:white;">The People Behind OfficeNest</h2>
+            <p class="sec-desc" style="color:#cfcfcf;">A small team with one shared goal: get the right order to the
+                right place, on time.</p>
+        </div>
+        <div class="team-rows">
+            <div class="team-row reveal delay-1">
+                <img src="./src/img14.webp" alt="Team member portrait">
+                <div class="team-row-info">
+                    <h3>Arvind Menon</h3>
+                    <span>Founder & Store Manager</span>
+                    <p>Leads sourcing decisions and overall store operations.</p>
+                </div>
+                <div class="team-row-icons">
+                    <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-row reveal delay-2">
+                <img src="./src/img16.webp" alt="Team member portrait">
+                <div class="team-row-info">
+                    <h3>Priya Sundaram</h3>
+                    <span>Corporate Sales Lead</span>
+                    <p>Manages bulk accounts and business partnerships.</p>
+                </div>
+                <div class="team-row-icons">
+                    <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-row reveal delay-3">
+                <img src="./src/img15.webp" alt="Team member portrait">
+                <div class="team-row-info">
+                    <h3>Rahul Verma</h3>
+                    <span>Logistics Head</span>
+                    <p>Keeps every delivery on schedule, every time.</p>
+                </div>
+                <div class="team-row-icons">
+                    <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="team-row reveal delay-4">
+                <img src="./src/img18.webp" alt="Team member portrait">
+                <div class="team-row-info">
+                    <h3>Sneha Kapoor</h3>
+                    <span>Procurement Manager</span>
+                    <p>Sources and vets every brand we bring on board.</p>
+                </div>
+                <div class="team-row-icons">
+                    <a href="404.html"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 6. CTA (split panel) -->
+    <section class="sec reveal">
+        <div class="cta-split">
+            <div class="cta-split-text">
+                <span class="material-symbols-outlined">shopping_cart_checkout</span>
+                <h1>Ready To Work With OfficeNest?</h1>
+                <p>Browse our catalog or talk to our team about a custom bulk plan for your business.</p>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                    <button class="hero-btn splitbtn errorpage" style="color:black;">Shop Now <span class="material-symbols-outlined">arrow_forward</span></button>
+                    <button class="hero-btn-outline errorpage" >Contact Sales <span class="material-symbols-outlined" style="font-size: 20px;">call</span></button>
+                </div>
+            </div>
+            <div class="cta-split-img"></div>
+        </div>
+    </section>
+
+    <footer class="footer reveal">
+        <div class="newsletter-wrap">
+            <h1 class="reveal delay-1">Newsletter</h1>
+            <h6 class="reveal delay-2">Stay updated on offers</h6>
+            <div class="footer-form reveal delay-3">
+                <input type="email" placeholder="Email Address" id="footer-mail">
+                <button class="footer-btn">Subscribe</button>
+            </div>
+            <p class="ferror"></p>
+        </div>
+
+        <div class="footer-main">
+            <div class="foot1 reveal-left delay-1">
+                <a href="index.html"><img src="./src/logo.webp" alt="OfficeNest Logo" class="footer-logo"></a>
+                <p>Quality office supplies and stationery delivered fast, for homes and businesses alike.</p>
+                <div class="footer-icons">
+                    <a href="404.html"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-left delay-2">
+                <h2>Quick Links</h2>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="service.html">Products</a>
+                    <a href="blog.html">Offers</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-left delay-3">
+                <h2>Categories</h2>
+                <div class="footer-links">
+                    <a href="404.html">Stationery</a>
+                    <a href="404.html">Office Furniture</a>
+                    <a href="404.html">Printing & Paper</a>
+                    <a href="404.html">Tech Accessories</a>
+                    <a href="404.html">Corporate Bulk Orders</a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-right delay-1">
+                <h2>Help</h2>
+                <div class="footer-links">
+                    <a href="404.html">Track Order</a>
+                    <a href="404.html">Returns & Refunds</a>
+                    <a href="404.html">Bulk Pricing</a>
+                    <a href="404.html">Delivery Info</a>
+                    <a href="404.html">FAQs</a>
+                </div>
+            </div>
+
+            <div class="foot2 reveal-right delay-2">
+                <h2>Contact</h2>
+                <div class="footer-links">
+                    <a href="404.html"> <span class="material-symbols-outlined">call</span>+91 12345 67898</a>
+                    <a href="404.html"><span class="material-symbols-outlined">mail</span>hello@officenest.com</a>
+                    <a href="404.html"><span class="material-symbols-outlined">location_on</span>Chennai, Tamilnadu</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="reveal-left">Copyright @ 2026 All rights Reserved</p>
+            <div class="reveal-right">
+                <a href="404.html">Terms & condition</a> | <a href="404.html">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
